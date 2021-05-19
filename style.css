@@ -1,0 +1,60 @@
+body {
+    background-color:#f4f5f6;
+    text-align: center;
+    top: 50px;
+    margin: 0px;
+}
+  label {
+    color: black;
+    text-align: center;
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .content-container, .after-registration-container {
+    margin: 30px;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
+
+  }
+
+  #phone-operator img{
+    width: 50px;
+    height: 50px;
+  }
+
+  #phone-operator {
+    display: none;
+  }
+  input {
+    color:black;
+    text-align: left;
+    border: none;
+    background-color: #f4f5f6;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: medium;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+
+  /* .form-container {
+    display: none;
+  } */
+
+  .after-registration-container {
+    display: none;
+    text-align: center;
+    padding: 50px;
+  }
+
+  #otp-error {
+    display: none;
+  }
+
+  #otpSuccess {
+    display: none;
+  }
+  
