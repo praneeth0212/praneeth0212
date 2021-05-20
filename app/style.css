@@ -1,8 +1,10 @@
-body {
-    background-color:#f4f5f6;
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+ body {
+    background-color:#73CEB6;
     text-align: center;
     top: 50px;
     margin: 0px;
+    font-family: 'Poppins', sans-serif;
 }
   label {
     color: black;
@@ -12,18 +14,20 @@ body {
   }
 
   .content-container, .after-registration-container {
-    margin: 30px;
+    margin: auto;
     background-color: white;
     height: 100%;
-    width: 100%;
+    width: 30%;
+    border-radius: 10px;
     background-color: #fff;
     padding: 1rem;
-
+margin-top: 5%;
+box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   }
 
   #phone-operator img{
     width: 50px;
-    height: 50px;
+    height: auto;
   }
 
   #phone-operator {
@@ -38,11 +42,28 @@ body {
     border-radius: 5px;
     font-size: medium;
     font-family:Arial, Helvetica, sans-serif;
+    margin: 20px;
+    width: 60%;
+    border: 1px solid #000;
   }
 
-  /* .form-container {
-    display: none;
-  } */
+  
+  button{
+    padding: 6px 8px;
+width: 280px;
+font-size: 20px;
+background-color:#73CEB6;
+color:#000;
+border: none;
+border-radius: 50px;
+  }
+
+  button:hover{
+    background-color: transparent;
+    border: 1px solid black;
+    color:#000;
+    border-radius: 50px;
+  }
 
   .after-registration-container {
     display: none;
