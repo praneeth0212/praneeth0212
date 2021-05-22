@@ -1,53 +1,69 @@
 // console.log('hello pran');
 let randomString = '';
 let tries = 0;
-function validateemail()  
-{  
-var x=document.getElementById('email').value; 
-var atposition=x.indexOf("@");  
-var dotposition=x.lastIndexOf(".");  
-if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
-  alert("Please enter a valid e-mail address");  
-  return false;  
-  }  
+ 
+function validateemail() {
+    document.getElementById('email-error').innerHTML=null;
+    document.getElementById('Invalid-data').innerHTML = null;
+    var x=document.getElementById('email').value; 
+    var atposition=x.indexOf("@");  
+    var spacePosition = x.indexOf(' ');
+    var dotposition=x.lastIndexOf(".");
+    // console.log('hello', atposition < 1, dotposition < atposition+2, dotposition+2 >= x.length, spacePosition, spacePosition > -1)
+    if (atposition < 1 || dotposition < atposition+2 || dotposition+2 >= x.length || spacePosition > -1) {
+        document.getElementById('email-error').innerHTML="*please enter a valid email";
+        document.getElementById('email').value = '';
+        return false;
+    } else {
+        document.getElementById('email-error').innerHTML=null;
+        
+    }
 } 
   
 
   
   
 function validatefullname(inputText) {
-    // console.log('hello helo')
     let words=document.getElementById('fname').value;
+    document.getElementById('Invalid-data').innerHTML = null;
+    document.getElementById('fullname-error').innerHTML= null;
     if(words) {
-        let isValid = false;
         words = words.split(' ');
-        // console.log('words', words, words.length >= 2);
         if(words.length >= 2) {
             for(let i=0; i < words.length; i++) {
                 if(words[i].length < 4) {
-                    alert('Please enter valid name');
+                    document.getElementById('fullname-error').innerHTML="*Please enter valid name";
+                    document.getElementById('fullname-error').style.display="block";
+                    document.getElementById('fname').value = '';
                     break;
+                }
+                if(words[i].length > 4) {
+                    document.getElementById('fullname-error').style.display="none";
                 }
                 const letters = words[i].split('');
                 for(let j=0; j<letters.length;j++) {
                     if(!isNaN(letters[j])) {
-                        alert('Please enter name with only alphabets');
+                        document.getElementById('fullname-error').innerHTML="*Please enter name with only alphabets"
+                        document.getElementById('fname').value = '';
                     }
                 }
             }
         } else {
-            alert('Please enter atleast two words');
+            document.getElementById('fullname-error').innerHTML="*Please enter atleast two words";
+            document.getElementById('fullname-error').style.display="block";
         }
     }
 }
 
 function validatephone(e) {
-    // console.log('valid number', e.which);
      const number=document.getElementById('phone').value;
-     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+     document.getElementById("number-error").innerHTML = null;
+     document.getElementById('Invalid-data').innerHTML = null;
+     console.log('hii')
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)&& (e.which < 96 || e.which > 105)) {
         return false;
       }
-    if(number) {
+    if (number) {
         if (number.length == 3 && number.indexOf("(") <= -1) {
 
             document.getElementById('phone').value = `(${number})-`;
@@ -65,30 +81,46 @@ function validatephone(e) {
                 document.getElementById('phone-operator').style.display='block';
                 document.getElementById('phone-operator').innerHTML='<img src="https://wallpapercave.com/wp/wp2388728.png"/>';
             } else if (number>=801 && number<=920) {
-                // console.log('ide')
                 document.getElementById('phone-operator').style.display='block';
                 document.getElementById('phone-operator').innerHTML='<img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Idea_Cellular_Logo.svg"/>';
-                // alert('idea');
             } else if (number>= 921 && number<=999) {
                 document.getElementById('phone-operator').style.display='block';
                 document.getElementById('phone-operator').innerHTML='<img src="https://logos-download.com/wp-content/uploads/2016/04/Vodafone_logo.png"/>';
             } else {
-                alert('invalid number');
+                document.getElementById("number-error").innerHTML="*please enter a valid number"
                 document.getElementById('phone').value = '';
-
             }
 
         } else if (number.length < 3) { 
             document.getElementById('phone-operator').style.display='none';
             document.getElementById('phone-operator').innerHTML='';
-        } else if(number.length > 13) {
-            alert('only 10 digits allowed');
-            document.getElementById('phone').style.border = '1px solid #red';
-            
         }
+        //  else if (number.length > 13) {
+        //     document.getElementById("number-error").innerHTML="*please enter 10 digits"
+        //     document.getElementById('number-error').style.display="block";
+        //     document.getElementById('phone').value = '';
+        // }
+          if (number.length <= 13) { 
+            document.getElementById('number-error').innerHTML="*please enter 10 digits"
+            document.getElementById('number-error').style.display = "block";
+        }
+
     }
 }
-
+function validatephonenumberlength(){
+    const number=document.getElementById('phone').value;
+    console.log('hi')
+    if (number.length !== 14) { 
+        console.log('do')
+        document.getElementById('number-error').innerHTML="*please enter 10 digits"
+        document.getElementById('number-error').style.display = "block";
+    }else{
+        console.log('whip')
+        document.getElementById('number-error').innerHTML=null
+        document.getElementById('number-error').style.display = "none";
+    }
+}
+    
 function statecode( ){
     
         const number=document.getElementById('phone').value;
@@ -96,12 +128,12 @@ function statecode( ){
        if(number) {
            if(number.length === 9) {
                if (subNumber >=000 && subNumber<=010) {
-                //    console.log('in')
                    document.getElementById('phone-statecode').style.display='block';
                    document.getElementById('phone-statecode').innerHTML='Andhra Pradesh';
                }
             } else if (number.length < 9) {
-                document.getElementById('phone-statecode').style.display='none';
+                document.getElementById("phone-statecode").style.display =
+                  "none";
                    document.getElementById('phone-statecode').innerHTML='';
             }
             if (subNumber >=011 && subNumber<=020) { 
@@ -265,17 +297,14 @@ function statecode( ){
                 document.getElementById('phone-statecode').innerHTML='Jammu and kashmir';
             }
             if (subNumber >=700 && subNumber<=799) { 
-                // console.log('in')
                 document.getElementById('phone-statecode').style.display='block';
                 document.getElementById('phone-statecode').innerHTML='Lakshwadeep';
             }
             if (subNumber >=800 && subNumber<=899) { 
-                // console.log('in')
                 document.getElementById('phone-statecode').style.display='block';
                 document.getElementById('phone-statecode').innerHTML='Pondicherry';
             }
             if (subNumber >=900 && subNumber<=999) { 
-                // console.log('in')
                 document.getElementById('phone-statecode').style.display='block';
                 document.getElementById('phone-statecode').innerHTML='Leh';
             }
@@ -297,9 +326,16 @@ function statecode( ){
         let words=document.getElementById('fname').value;
         const number=document.getElementById('phone').value;
         var x=document.getElementById('email').value;
+        const fullnameError = document.getElementById('fullname-error').innerHTML;
+        const emailError =document.getElementById('email-error').innerHTML;
+        const phoneError = document.getElementById('number-error').innerHTML;
+        console.log(fullnameError, emailError, phoneError, 'hello errors');
         if(words == '' || number == '' || x == ''){
-        alert("Enter all the details");
+            document.getElementById('Invalid-data').innerHTML="*please enter all the details"
+        } else if(fullnameError || emailError || phoneError) {
+            document.getElementById('Invalid-data').innerHTML = '*please enter all the details correctly';
         } else {
+            console.log('hello else')
             generateRandomString();
             document.getElementById('form-container').style.display = 'none';
             document.getElementById('after-registration-container').style.display = 'block';
@@ -329,3 +365,16 @@ function statecode( ){
             }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    
