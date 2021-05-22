@@ -1,4 +1,4 @@
-// console.log('hello pran');
+console.log('hello pran');
 let randomString = '';
 let tries = 0;
  
@@ -95,11 +95,11 @@ function validatephone(e) {
             document.getElementById('phone-operator').style.display='none';
             document.getElementById('phone-operator').innerHTML='';
         }
-        //  else if (number.length > 13) {
-        //     document.getElementById("number-error").innerHTML="*please enter 10 digits"
-        //     document.getElementById('number-error').style.display="block";
-        //     document.getElementById('phone').value = '';
-        // }
+         else if (number.length > 13) {
+            document.getElementById("number-error").innerHTML="*please enter 10 digits"
+            document.getElementById('number-error').style.display="block";
+            document.getElementById('phone').value = '';
+        }
           if (number.length <= 13) { 
             document.getElementById('number-error').innerHTML="*please enter 10 digits"
             document.getElementById('number-error').style.display = "block";
@@ -109,13 +109,13 @@ function validatephone(e) {
 }
 function validatephonenumberlength(){
     const number=document.getElementById('phone').value;
-    console.log('hi')
+    // console.log('hi')
     if (number.length !== 14) { 
-        console.log('do')
+        // console.log('do')
         document.getElementById('number-error').innerHTML="*please enter 10 digits"
         document.getElementById('number-error').style.display = "block";
     }else{
-        console.log('whip')
+        // console.log('whip')
         document.getElementById('number-error').innerHTML=null
         document.getElementById('number-error').style.display = "none";
     }

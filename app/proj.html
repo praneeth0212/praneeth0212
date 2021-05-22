@@ -18,7 +18,7 @@
     <span> State/UT :</span>
     <p id="phone-statecode"></p>
   </div>
-  <input autocomplete="off"onchange="validatephonenumberlength()" onkeydown="validatephone(event)"id="phone" name="phone" maxlength="14" pattern = "[0-9] {3} - [0-9] {2} - [0-9] {3}"><br>
+  <input autocomplete="off"onchange="validatephonenumberlength()" onkeypress="validatephone(event)"id="phone" name="phone" maxlength="14" pattern = "[0-9] {3} - [0-9] {2} - [0-9] {3}"><br>
   <p  style='color: red;' id="number-error"></p>
   <p  style='color: red;' id="Invalid-data"></p>
   <button type="button" id="submit-button" onclick="submit()">Submit
