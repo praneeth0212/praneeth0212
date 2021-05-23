@@ -1,50 +1,46 @@
-console.log('hello pran');
+
 let randomString = '';
 let tries = 0;
- 
+
 function validateemail() {
-    document.getElementById('email-error').innerHTML=null;
-    document.getElementById('Invalid-data').innerHTML = null;
+    // document.getElementById('email-error').innerHTML=null;
+    // document.getElementById('Invalid-data').innerHTML = null;
     var x=document.getElementById('email').value; 
     var atposition=x.indexOf("@");  
     var spacePosition = x.indexOf(' ');
     var dotposition=x.lastIndexOf(".");
-    // console.log('hello', atposition < 1, dotposition < atposition+2, dotposition+2 >= x.length, spacePosition, spacePosition > -1)
+        // console.log('hello', atposition < 1, dotposition < atposition+2, dotposition+2 >= x.length, spacePosition, spacePosition > -1)
     if (atposition < 1 || dotposition < atposition+2 || dotposition+2 >= x.length || spacePosition > -1) {
         document.getElementById('email-error').innerHTML="*please enter a valid email";
-        document.getElementById('email').value = '';
+        document.getElementById('email-error').style.display="block";
         return false;
     } else {
-        document.getElementById('email-error').innerHTML=null;
+         document.getElementById('email-error').style.display="none";
         
     }
 } 
-  
-
-  
-  
 function validatefullname(inputText) {
     let words=document.getElementById('fname').value;
-    document.getElementById('Invalid-data').innerHTML = null;
-    document.getElementById('fullname-error').innerHTML= null;
+    // document.getElementById('Invalid-data').innerHTML = null;
+    // document.getElementById('fullname-error').innerHTML= null;
     if(words) {
         words = words.split(' ');
         if(words.length >= 2) {
             for(let i=0; i < words.length; i++) {
                 if(words[i].length < 4) {
-                    document.getElementById('fullname-error').innerHTML="*Please enter valid name";
+                    document.getElementById('fullname-error').innerHTML="*Please enter a valid name";
                     document.getElementById('fullname-error').style.display="block";
-                    document.getElementById('fname').value = '';
+                    // document.getElementById('fname').value = '';
                     break;
                 }
-                if(words[i].length > 4) {
+                if(words[i].length >= 4) {
                     document.getElementById('fullname-error').style.display="none";
                 }
                 const letters = words[i].split('');
                 for(let j=0; j<letters.length;j++) {
                     if(!isNaN(letters[j])) {
                         document.getElementById('fullname-error').innerHTML="*Please enter name with only alphabets"
-                        document.getElementById('fname').value = '';
+                        document.getElementById('fullname-error').style.display="block";
                     }
                 }
             }
@@ -52,20 +48,33 @@ function validatefullname(inputText) {
             document.getElementById('fullname-error').innerHTML="*Please enter atleast two words";
             document.getElementById('fullname-error').style.display="block";
         }
+        
     }
 }
+function lettersValidate(key) {
+    var keycode = (key.which) ? key.which : key.keyCode;
 
+    if ((keycode > 64 && keycode < 91) || (keycode > 96 && keycode < 123))  
+    {     
+           return true;    
+    }
+    else
+    {
+        return false;
+    }
+         
+}
+   
 function validatephone(e) {
      const number=document.getElementById('phone').value;
-     document.getElementById("number-error").innerHTML = null;
-     document.getElementById('Invalid-data').innerHTML = null;
-     console.log('hii')
+    //  document.getElementById("number-error").innerHTML = null;
+    //  document.getElementById('Invalid-data').innerHTML = null;
+    //  console.log('hii')
      if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)&& (e.which < 96 || e.which > 105)) {
         return false;
       }
     if (number) {
         if (number.length == 3 && number.indexOf("(") <= -1) {
-
             document.getElementById('phone').value = `(${number})-`;
         } else if (number.length == 4 && number.indexOf("(") > -1) {
             document.getElementById('phone').value = `${number})-`;
@@ -74,7 +83,6 @@ function validatephone(e) {
           } else if(number.length == 9) {
             statecode();
             document.getElementById('phone').value = `${number}-`;
-
           } 
         if(number.length === 3) {
             if (number >= 621 && number<=799) { 
@@ -89,22 +97,21 @@ function validatephone(e) {
             } else {
                 document.getElementById("number-error").innerHTML="*please enter a valid number"
                 document.getElementById('phone').value = '';
+                document.getElementById('number-error').style.display="block";
             }
-
         } else if (number.length < 3) { 
-            document.getElementById('phone-operator').style.display='none';
-            document.getElementById('phone-operator').innerHTML='';
+            document.getElementById('phone-operator').style.display='block';
+            document.getElementById('phone-operator').innerHTML='Enter a valid number';
         }
          else if (number.length > 13) {
             document.getElementById("number-error").innerHTML="*please enter 10 digits"
             document.getElementById('number-error').style.display="block";
-            document.getElementById('phone').value = '';
+            // document.getElementById('phone').value = '';
         }
           if (number.length <= 13) { 
             document.getElementById('number-error').innerHTML="*please enter 10 digits"
             document.getElementById('number-error').style.display = "block";
         }
-
     }
 }
 function validatephonenumberlength(){
@@ -329,13 +336,13 @@ function statecode( ){
         const fullnameError = document.getElementById('fullname-error').innerHTML;
         const emailError =document.getElementById('email-error').innerHTML;
         const phoneError = document.getElementById('number-error').innerHTML;
-        console.log(fullnameError, emailError, phoneError, 'hello errors');
+        // console.log(fullnameError, emailError, phoneError, 'hello errors');
         if(words == '' || number == '' || x == ''){
             document.getElementById('Invalid-data').innerHTML="*please enter all the details"
         } else if(fullnameError || emailError || phoneError) {
             document.getElementById('Invalid-data').innerHTML = '*please enter all the details correctly';
         } else {
-            console.log('hello else')
+            // console.log('hello else')
             generateRandomString();
             document.getElementById('form-container').style.display = 'none';
             document.getElementById('after-registration-container').style.display = 'block';
@@ -358,8 +365,8 @@ function statecode( ){
             } else {
                 document.getElementById('otp').value = '';
                 document.getElementById('otp-error').style.display = 'block';
-                tries++;
-                if(tries === 3) {
+                tries ++;
+                if(tries== 3){
                     window.location = 'http://pixel6.com/';
                 }
             }
